@@ -1,0 +1,76 @@
+# ===========================================
+# GraphQL Schema for Kanban API
+# ===========================================
+
+# -----------------------------
+# TYPES - Define what data looks like
+# -----------------------------
+
+# Task type - mirrors your TaskResponse DTO
+type Task {
+    id: ID!                    # ! means required (non-null)
+    title: String!
+    description: String
+    status: Status!
+    priority: Priority!
+    version: Int!
+    createdAt: String          # DateTime as ISO string
+    updatedAt: String
+}
+
+# Enums - same as your Java enums
+enum Status {
+    TO_DO
+    IN_PROGRESS
+    DONE
+}
+
+enum Priority {
+    LOW
+    MEDIUM
+    HIGH
+}
+
+# -----------------------------
+# QUERIES - Read operations (like GET)
+# -----------------------------
+
+type Query {
+    # Get all tasks, optionally filter by status
+    tasks(status: Status): [Task!]!
+    
+    # Get a single task by ID
+    task(id: ID!): Task
+}
+
+# -----------------------------
+# MUTATIONS - Write operations (like POST, PUT, DELETE)
+# -----------------------------
+
+type Mutation {
+    # Create a new task
+    createTask(input: CreateTaskInput!): Task!
+    
+    # Update an existing task (full update, requires version)
+    updateTask(id: ID!, input: UpdateTaskInput!): Task!
+    
+    # Delete a task
+    deleteTask(id: ID!): Boolean!
+}
+
+# Input types - for mutations (like your Request DTOs)
+input CreateTaskInput {
+    title: String!
+    description: String
+    status: String!           # Will validate in Java
+    priority: String!
+}
+
+input UpdateTaskInput {
+    title: String!
+    description: String
+    status: String!
+    priority: String!
+    version: Int!             # Required for optimistic locking
+}
+
