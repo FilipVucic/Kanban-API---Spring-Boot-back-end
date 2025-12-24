@@ -31,7 +31,7 @@ A RESTful API for managing Kanban board tasks, built with Spring Boot 3.x.
 
 ```bash
 # Clone the repository
-git clone https://github.com/FilipVucic/Kanban-API---Spring-Boot-back-end.git
+git clone git@github.com:FilipVucic/Kanban-API---Spring-Boot-back-end.git
 cd Kanban-API---Spring-Boot-back-end
 
 # Start the application with PostgreSQL
