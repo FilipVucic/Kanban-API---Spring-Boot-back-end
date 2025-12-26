@@ -1,6 +1,6 @@
-# Kanban API - Spring Boot Backend
+# Kanban Board Application
 
-A RESTful API for managing Kanban board tasks, built with Spring Boot 3.x.
+A full-stack Kanban board application with a Spring Boot backend API and React frontend. Features real-time task updates via WebSocket, JWT authentication, and a modern responsive UI.
 
 ## 📋 Tech Stack
 
@@ -23,24 +23,32 @@ A RESTful API for managing Kanban board tasks, built with Spring Boot 3.x.
 
 ### Prerequisites
 
+**Backend:**
 - Java 17
 - Docker & Docker Compose
 - Maven 3.9+
 
-### Option 1: Run with Docker Compose (Recommended)
+**Frontend:**
+- Node.js 16+ and npm/yarn
+
+### Running the Full Application (Backend + Frontend)
+
+#### Step 1: Start the Backend API
+
+**Option A: Run with Docker Compose (Recommended)**
 
 ```bash
 # Clone the repository
 git clone git@github.com:FilipVucic/Kanban-API---Spring-Boot-back-end.git
 cd Kanban-API---Spring-Boot-back-end
 
-# Start the application with PostgreSQL
+# Start the backend API with PostgreSQL
 docker-compose up -d
 
 # The API will be available at http://localhost:8080
 ```
 
-### Option 2: Run Locally
+**Option B: Run Locally**
 
 ```bash
 # Start PostgreSQL (using Docker)
@@ -55,6 +63,36 @@ docker run -d \
 # Build and run the application
 mvn spring-boot:run
 ```
+
+#### Step 2: Start the React Frontend
+
+```bash
+# Navigate to the frontend directory
+cd frontend
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
+```
+
+The frontend will be available at **http://localhost:3000**
+
+#### Step 3: Access the Application
+
+- **Frontend UI**: http://localhost:3000
+- **Backend API**: http://localhost:8080
+- **API Documentation (Swagger)**: http://localhost:8080/swagger-ui.html
+- **GraphQL Playground**: http://localhost:8080/graphiql
+
+### Quick Test
+
+1. Open http://localhost:3000 in your browser
+2. Register a new account or login
+3. Start creating and managing tasks!
+
+> **Note**: Make sure the backend is running before starting the frontend. The frontend expects the API to be available at `http://localhost:8080`.
 
 ## 🧪 Testing
 
