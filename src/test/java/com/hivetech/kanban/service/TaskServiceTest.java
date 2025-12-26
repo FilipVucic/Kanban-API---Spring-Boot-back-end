@@ -205,8 +205,8 @@ class TaskServiceTest {
                     .build();
 
             given(taskRepository.findById(1L)).willReturn(Optional.of(task));
-            given(taskRepository.save(task)).willReturn(task);
-            given(taskMapper.toResponse(task)).willReturn(updatedResponse);
+            given(taskRepository.saveAndFlush(any(Task.class))).willAnswer(invocation -> invocation.getArgument(0));
+            given(taskMapper.toResponse(any(Task.class))).willReturn(updatedResponse);
 
             // when
             TaskResponse result = taskService.updateTask(1L, updateRequest);
@@ -248,7 +248,7 @@ class TaskServiceTest {
                     .build();
 
             given(taskRepository.findById(1L)).willReturn(Optional.of(task));
-            given(taskRepository.save(any(Task.class)))
+            given(taskRepository.saveAndFlush(any(Task.class)))
                     .willThrow(new ObjectOptimisticLockingFailureException(Task.class, 1L));
 
             // when/then
@@ -281,8 +281,8 @@ class TaskServiceTest {
 
             given(taskRepository.findById(1L)).willReturn(Optional.of(task));
             willDoNothing().given(taskMapper).patchEntity(any(Task.class), any(TaskPatchRequest.class));
-            given(taskRepository.save(task)).willReturn(task);
-            given(taskMapper.toResponse(task)).willReturn(patchedResponse);
+            given(taskRepository.saveAndFlush(any(Task.class))).willAnswer(invocation -> invocation.getArgument(0));
+            given(taskMapper.toResponse(any(Task.class))).willReturn(patchedResponse);
 
             // when
             TaskResponse result = taskService.patchTask(1L, patchRequest);
