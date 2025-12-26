@@ -75,7 +75,7 @@ public class TaskService {
         
         try {
             taskMapper.updateEntity(task, request);
-            Task savedTask = taskRepository.save(task);
+            Task savedTask = taskRepository.saveAndFlush(task);
             
             TaskResponse response = taskMapper.toResponse(savedTask);
             webSocketService.notifyTaskUpdated(response);
@@ -94,7 +94,7 @@ public class TaskService {
                 .orElseThrow(() -> new ResourceNotFoundException("Task", "id", id));
         
         taskMapper.patchEntity(task, request);
-        Task savedTask = taskRepository.save(task);
+        Task savedTask = taskRepository.saveAndFlush(task);
         
         TaskResponse response = taskMapper.toResponse(savedTask);
         webSocketService.notifyTaskUpdated(response);

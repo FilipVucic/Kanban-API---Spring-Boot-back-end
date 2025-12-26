@@ -1,0 +1,84 @@
+.task-column {
+  flex: 1;
+  min-width: 300px;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 10px;
+}
+
+.column-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.column-label {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.task-count {
+  font-size: 16px;
+  color: #666;
+  font-weight: normal;
+}
+
+.add-task-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  background: white;
+  color: #666;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.add-task-btn:hover {
+  background: #764ba2;
+  color: white;
+  border-color: #764ba2;
+}
+
+.tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex: 1;
+}
+
+.empty-column {
+  padding: 40px 20px;
+  text-align: center;
+  color: #999;
+  font-size: 14px;
+  background: white;
+  border-radius: 8px;
+  border: 2px dashed #e0e0e0;
+}
+
+@media (max-width: 768px) {
+  .task-column {
+    min-width: 100%;
+  }
+}
+
